@@ -44,7 +44,7 @@ class Steppermotor():
         if speed >= 0:
             GPIO.output(self.dir_pin, GPIO.HIGH)
         else:
-            GPIO.output(self.dir_pit, GPIO.LOW)
+            GPIO.output(self.dir_pin, GPIO.LOW)
         t = threading.Thread(target=self.__speed__, args=(speed,))
         t.start()
 
@@ -82,9 +82,9 @@ class Steppermotor():
             dif = 1
         while steps != 0:
             GPIO.output(self.motor_pin, GPIO.HIGH)
-            sleep(1/speed)
+            sleep(1/abs(speed))
             GPIO.output(self.motor_pin, GPIO.LOW)
-            sleep(1/speed)
+            sleep(1/abs(speed))
             self.__hasMoved__(speed)
             steps += dif
 
