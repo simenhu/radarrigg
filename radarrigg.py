@@ -63,7 +63,7 @@ class Steppermotor():
             sleep(1/speed)
             GPIO.output(self.motor_pin, GPIO.LOW)
             sleep(1/speed)
-            __hasMoved__(speed)
+            self.__hasMoved__(speed)
 
     def __hasMoved__(self, speed):
         if speed >= 0:
@@ -85,7 +85,7 @@ class Steppermotor():
             sleep(1/speed)
             GPIO.output(self.motor_pin, GPIO.LOW)
             sleep(1/speed)
-            __hasMoved__(speed)
+            self.__hasMoved__(speed)
 
 
     def unconnet(self):
