@@ -60,9 +60,9 @@ class Steppermotor():
                 self.stop_flag = False
                 break
             GPIO.output(self.motor_pin, GPIO.HIGH)
-            sleep(1/speed)
+            sleep(1/abs(speed))
             GPIO.output(self.motor_pin, GPIO.LOW)
-            sleep(1/speed)
+            sleep(1/abs(speed)
             self.__hasMoved__(speed)
 
     def __hasMoved__(self, speed):
