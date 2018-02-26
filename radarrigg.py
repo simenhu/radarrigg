@@ -13,7 +13,7 @@ import threading
 import serial
 from time import sleep
 
-class steppermotor():
+class Steppermotor():
     """
     This is a class for controlling a steppermotor. It should have fuctions to
     jump a number of steps, set speed and made observable by a listener to get
