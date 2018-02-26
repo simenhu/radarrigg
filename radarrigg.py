@@ -71,7 +71,7 @@ class Steppermotor():
         else:
             self.position -= 1
         #self.ser.write(self.position)
-        print(self.position)
+        #print(self.position)
 
     def step_num_steps(self, steps, speed):
         if steps >= 0:
