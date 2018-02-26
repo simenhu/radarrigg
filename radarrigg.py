@@ -24,14 +24,14 @@ class Steppermotor():
         self.position = 0
         self.dir_pin = dir_pin
         self.stop = False
-        self.ser = serial.Serial(
-               port='/dev/ttyUSB0',
-               baudrate = 9600,
-               parity=serial.PARITY_NONE,
-               stopbits=serial.STOPBITS_ONE,
-               bytesize=serial.EIGHTBITS,
-               timeout=1
-           )
+        # self.ser = serial.Serial(
+        #        port='/dev/ttyUSB0',
+        #        baudrate = 9600,
+        #        parity=serial.PARITY_NONE,
+        #        stopbits=serial.STOPBITS_ONE,
+        #        bytesize=serial.EIGHTBITS,
+        #        timeout=1
+        #    )
 
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup([self.motor_pin, self.dir_pin], GPIO.OUT)
