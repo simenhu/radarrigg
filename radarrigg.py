@@ -48,7 +48,7 @@ class Steppermotor():
         t = threading.Thread(target=self.__speed__, args=(speed,))
         t.start()
 
-    def stop():
+    def stop(self):
         self.stop_flag = True
 
     def __speed__(self, speed):
