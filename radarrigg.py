@@ -23,7 +23,7 @@ class Steppermotor():
         self.motor_pin = motor_pin
         self.position = 0
         self.dir_pin = dir_pin
-        self.stop = False
+        self.stop_flag = False
         # self.ser = serial.Serial(
         #        port='/dev/ttyUSB0',
         #        baudrate = 9600,
@@ -49,15 +49,15 @@ class Steppermotor():
         t.start()
 
     def stop():
-        self.stop = True
+        self.stop_flag = True
 
     def __speed__(self, speed):
         """
         Helper method to run a contignous speed
         """
         while True:
-            if self.stop == True:
-                self.stop = False
+            if self.stop_flag == True:
+                self.stop_flag = False
                 break
             GPIO.output(self.motor_pin, GPIO.HIGH)
             sleep(1/speed)
@@ -86,6 +86,7 @@ class Steppermotor():
             GPIO.output(self.motor_pin, GPIO.LOW)
             sleep(1/speed)
             self.__hasMoved__(speed)
+            steps += dif
 
 
     def unconnet(self):
