@@ -45,7 +45,7 @@ class Steppermotor():
             GPIO.output(self.dir_pin, GPIO.HIGH)
         else:
             GPIO.output(self.dir_pit, GPIO.LOW)
-        t = threading.Thread(target=__speed__, args=(speed,))
+        t = threading.Thread(target=self.__speed__, args=(speed,))
         t.start()
 
     def stop():
