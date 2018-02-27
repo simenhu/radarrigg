@@ -19,7 +19,7 @@ class Steppermotor():
     jump a number of steps, set speed and made observable by a listener to get
     its position.
     """
-    def __init__(self, motor_pin, dir_pin):
+    def __init__(self, motor_pin, dir_pin, listener=None):
         self.motor_pin = motor_pin
         self.position = 0
         self.dir_pin = dir_pin
@@ -70,6 +70,8 @@ class Steppermotor():
             self.position += 1
         else:
             self.position -= 1
+        if self.listener!=None:
+            self.listener.fire
         #self.ser.write(self.position)
         #print(self.position)
 
@@ -91,3 +93,18 @@ class Steppermotor():
 
     def unconnet(self):
         GPIO.cleanup()
+
+
+def tb6612_test():
+    GPIO.setmode(GPIO.BOARD)
+    chan_list = [7, 11, 13, 15]
+    GPIO.setup(chan_list, GPIO.OUT)
+    pin_order = [[GPIO.HIGH, GPIO.LOW, GPIO.LOW, GPIO.LOW],
+                [GPIO.LOW, GPIO.HIGH, GPIO.LOW, GPIO.LOW],
+                [GPIO.LOW, GPIO.LOW, GPIO.HIGH, GPIO.LOW],
+                [GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.HIGH]]
+    i = 0
+    while True:
+        GPIO.output(chan_list, pin_order[i])
+        i=(i+1)%4
+        time.sleep(0.0005)
