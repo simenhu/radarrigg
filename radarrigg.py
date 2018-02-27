@@ -108,8 +108,6 @@ def tb6612_test(time):
                 [0, 0, 0, 1],
                 [1, 0, 0, 1]
                 ]
-
-    pin_order_half
     i = 0
     while True:
         GPIO.output(chan_list, pin_order[i])
