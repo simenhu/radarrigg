@@ -99,13 +99,20 @@ def tb6612_test(time):
     GPIO.setmode(GPIO.BOARD)
     chan_list = [7, 11, 13, 15]
     GPIO.setup(chan_list, GPIO.OUT)
-    pin_order = [[1, 1, 0, 0],
+    pin_order = [[1, 0, 0, 0],
+                [1, 1, 0, 0],
+                [0, 1, 0, 0],
                 [0, 1, 1, 0],
+                [0, 0, 1, 0],
                 [0, 0, 1, 1],
-                [1, 0, 0, 1]]
+                [0, 0, 0, 1],
+                [1, 0, 0, 1]
+                ]
+
+    pin_order_half
     i = 0
     while True:
         GPIO.output(chan_list, pin_order[i])
         print('{} pins, {}-value'.format(pin_order[i], i))
-        i=(i+1)%4
+        i=(i+1)%8
         sleep(time)
