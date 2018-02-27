@@ -95,7 +95,7 @@ class Steppermotor():
         GPIO.cleanup()
 
 
-def tb6612_test():
+def tb6612_test(time):
     GPIO.setmode(GPIO.BOARD)
     chan_list = [7, 11, 13, 15]
     GPIO.setup(chan_list, GPIO.OUT)
@@ -107,4 +107,4 @@ def tb6612_test():
     while True:
         GPIO.output(chan_list, pin_order[i])
         i=(i+1)%4
-        sleep(0.0005)
+        sleep(time)
