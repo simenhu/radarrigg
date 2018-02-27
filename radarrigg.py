@@ -106,5 +106,6 @@ def tb6612_test(time):
     i = 0
     while True:
         GPIO.output(chan_list, pin_order[i])
+        print('{} pins, {}-value'.format(pin_order[i], i))
         i=(i+1)%4
         sleep(time)
