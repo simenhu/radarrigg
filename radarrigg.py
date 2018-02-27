@@ -107,4 +107,4 @@ def tb6612_test():
     while True:
         GPIO.output(chan_list, pin_order[i])
         i=(i+1)%4
-        time.sleep(0.0005)
+        sleep(0.0005)
