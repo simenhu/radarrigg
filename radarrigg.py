@@ -24,6 +24,7 @@ class Steppermotor():
         self.position = 0
         self.dir_pin = dir_pin
         self.stop_flag = False
+        self.listener = listener
         # self.ser = serial.Serial(
         #        port='/dev/ttyUSB0',
         #        baudrate = 9600,
@@ -71,7 +72,7 @@ class Steppermotor():
         else:
             self.position -= 1
         if self.listener!=None:
-            self.listener.fire
+            self.listener.fire()
         #self.ser.write(self.position)
         #print(self.position)
 
@@ -95,7 +96,7 @@ class Steppermotor():
         GPIO.cleanup()
 
 
-def tb6612_test(time):
+def tb6612_test(speed):
     GPIO.setmode(GPIO.BOARD)
     chan_list = [7, 11, 13, 15]
     GPIO.setup(chan_list, GPIO.OUT)
@@ -113,4 +114,4 @@ def tb6612_test(time):
         GPIO.output(chan_list, pin_order[i])
         print('{} pins, {}-value'.format(pin_order[i], i))
         i=(i+1)%8
-        sleep(time)
+        sleep(1/abs(speed))
