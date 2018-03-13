@@ -184,7 +184,9 @@ def tb6612_test(speed):
 
 def main():
     # Initialize server
-    s = RadarTCPServer('', 2323)
+    t = threading.Thread(target=RadarTCPServer, ars=('', 2323))
+    t.daemon = True
+    t.start()
 
     # Defines the steppmotores to be used
     buttonpin = 11
