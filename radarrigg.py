@@ -69,10 +69,10 @@ class Steppermotor():
         global pos
         if speed >= 0:
             self.position += 1
-            pos[self.changeval] = self.changeval + 1
+            pos[self.changeval] = pos[self.changeval] + 1
         else:
             self.position -= 1
-            pos[self.changeval] = self.changeval - 1
+            pos[self.changeval] = pos[self.changeval] - 1
 
 
     def step_num_steps(self, steps, speed):
