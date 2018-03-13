@@ -121,7 +121,7 @@ class RadarTCPHandler(socketserver.BaseRequestHandler):
             if not _data:
                 # EOF, client closed, just return
                 return
-            # kode for håndtering av request
+            # kode for haandtering av request
 
             self.request.send(pickle.dumps(pos))
 
