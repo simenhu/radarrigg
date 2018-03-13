@@ -184,7 +184,7 @@ def tb6612_test(speed):
 
 def main():
     # Initialize server
-    t = threading.Thread(target=RadarTCPServer, ars=('', 2323))
+    t = threading.Thread(target=RadarTCPServer, args=('', 2323))
     t.daemon = True
     t.start()
 
