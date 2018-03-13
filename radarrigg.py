@@ -66,12 +66,13 @@ class Steppermotor():
             self.__hasMoved(speed)
 
     def __hasMoved(self, speed):
+        global pos
         if speed >= 0:
             self.position += 1
-            global pos[self.changeval] = self.changeval + 1
+            pos[self.changeval] = self.changeval + 1
         else:
             self.position -= 1
-            global pos[self.changeval] = self.changeval - 1
+            pos[self.changeval] = self.changeval - 1
 
 
     def step_num_steps(self, steps, speed):
