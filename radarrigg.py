@@ -25,7 +25,7 @@ class Steppermotor():
     jump a number of steps, set speed and made observable by a listener to get
     its position.
     """
-    def __init__(self, motor_pin, dir_pin, changeval):
+    def __init__(self, motor_pin, dir_pin, changeval=None):
         self.motor_pin = motor_pin
         self.position = 0
         self.dir_pin = dir_pin
@@ -69,10 +69,12 @@ class Steppermotor():
         global pos
         if speed >= 0:
             self.position += 1
-            pos[self.changeval] = pos[self.changeval] + 1
+            if self.changeval != None:
+                pos[self.changeval] = pos[self.changeval] + 1
         else:
             self.position -= 1
-            pos[self.changeval] = pos[self.changeval] - 1
+            if self.changeval != None:
+                pos[self.changeval] = pos[self.changeval] - 1
 
 
     def step_num_steps(self, steps, speed):
@@ -190,7 +192,7 @@ def main():
 
     # Defines the steppmotores to be used
     buttonpin = 11
-    table_stepper = Steppermotor(18, 22, 'rotation')
+    table_stepper = Steppermotor(18 , 22, 'rotation')
     rail_stepper = Steppermotor(12,16, 'height')
 
     GPIO.setmode(GPIO.BOARD)
