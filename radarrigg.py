@@ -221,10 +221,10 @@ def main():
     levels = 10
 
     # rotation_speed is the speed which the table rotates
-    rotation_speed = 2000
+    rotation_speed = 20000
 
     # rail_speed is the speed which the rail climbs
-    rail_speed = 2000
+    rail_speed = 20000
 
     # Time is the amount of time it takes for one round with the given speed
     rotation_time = round/(rotation_speed)
@@ -232,10 +232,11 @@ def main():
     # Sets the speed for the scan
     table_stepper.set_speed(rotation_speed)
 
-    for i in range(levels+1):
+    for i in range(levels):
+        print("Scanning level {}".format(i+1))
         # Here we divide the number of height steps on the levels to know how many levels to scan and the distance between them
         time.sleep(3*rotation_time)
-        rail_stepper.step_num_steps(height/levels, rail_speed)
+        rail_stepper.step_num_steps(height/(levels-1), rail_speed)
 
 
 
