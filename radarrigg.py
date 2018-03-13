@@ -8,7 +8,7 @@
 # -set limits
 # -calculate endpoint with switch
 
-import RPi.GPIO as GPIO
+
 import threading
 from time import sleep
 import argparse
@@ -20,6 +20,7 @@ import pickle
 pos = {'rotation': 0, 'height': 0}
 
 class Steppermotor():
+    import RPi.GPIO as GPIO
     """
     This is a class for controlling a steppermotor. It should have fuctions to
     jump a number of steps, set speed and made observable by a listener to get
@@ -125,7 +126,7 @@ class RadarTCPHandler(socketserver.BaseRequestHandler):
                 return
             # kode for haandtering av request
 
-            self.request.send(pickle.dumps(pos))
+            self.request.send(pickle.dumps([pos['rotation'], pos['height']]))
 
 class RadarTCPClient():
     """
@@ -142,9 +143,14 @@ class RadarTCPClient():
 
 
     def getPosition(self):
-        self.s.send("get")
-        data = self.s.recv(1024)
-        return data
+        """
+        This function is to be used by equanostic. It returns a list where the first value is the number of steps taken
+        and the second number is the height of the radar at that time.
+        :return:
+        """
+        self.s.sendall(pickle.dumps('get'))
+        data = self.s.recv(4096)
+        return pickle.loads(data)
 
     def test(self):
         # send get request
@@ -220,7 +226,7 @@ def main():
     round = 32000
 
     # height is the number of steps for one length of the slider
-    height = 29600
+    height = 24800
 
     # Levels is the amount of layers to divide 50 cm stepping in
     levels = 10
