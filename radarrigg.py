@@ -187,19 +187,20 @@ def main():
     s = RadarTCPServer('', 2323)
 
     # Defines the steppmotores to be used
-    buttonpin = 32
+    buttonpin = 11
     table_stepper = Steppermotor(18, 22, 'rotation')
     rail_stepper = Steppermotor(12,16, 'height')
 
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(32, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+
     #First we have to detect the endpoints for the rail
     rail_stepper.set_speed(-200)
 
     # Wait on switch
-    while GPIO.input(buttonpin) == 1:
-        pass
+    #while GPIO.input(buttonpin) == 1:
+    #   pass
 
     # Stop motor at bottom
     rail_stepper.stop()
